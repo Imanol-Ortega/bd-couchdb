@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import {Form,Formik} from 'formik'
 import { usePersonas } from '../context/ContextoProvider'
@@ -6,7 +7,7 @@ import { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function PersonasForm() {
-    const {loadPersonas,getPersona,updPersona,postPersona} = usePersonas();
+    const {getPersona,updPersona,postPersona} = usePersonas();
    
     const [personas,setPersonas] = useState({
         nombre: '',
@@ -16,9 +17,27 @@ function PersonasForm() {
     });
     const params = useParams();
     const navigate = useNavigate()
+    const cargarPersonas = async()=>{
+        try {
+            if(params.id){
+                const res = await getPersona(params.id);
+                const rp = res.data[0].value
+                setPersonas({
+                    id:rp.id,
+                    rev:rp.rev,
+                    nombre:rp.nombre,
+                    apellido:rp.apellido,
+                    nrodocumento:rp.nrodocumento,
+                    email:rp.email
+                });
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
     useEffect(()=>{
-        loadPersonas();
-    },[loadPersonas]) 
+        cargarPersonas()
+    },[]) 
 
     return (
         <div>
@@ -27,6 +46,7 @@ function PersonasForm() {
                     enableReinitialize = {true}
                     onSubmit={async(values,actions)=>{
                         if (params.id){
+
                             await updPersona(params.id,values);
                         }else{
                             await postPersona(values);
