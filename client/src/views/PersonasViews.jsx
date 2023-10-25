@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { usePersonas } from "../context/ContextoProvider";
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars 
 import PersonasCard from "../componentes/PersonasCard";
 
 function PersonasViews() {

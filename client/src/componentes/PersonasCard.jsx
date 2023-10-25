@@ -5,6 +5,7 @@ import { usePersonas } from "../context/ContextoProvider";
 function PersonasCard({personas}) {
     const {delPersona} = usePersonas();
     const navigate = useNavigate();
+    console.log(personas)
     const values = {id:personas.value.id,rev:personas.value.rev}
   return (
     <div className="bg-gray-600 rounded-md p-4 ">
