@@ -1,0 +1,2 @@
+# bd-couchdb
+couchdb-basededatos
