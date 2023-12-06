@@ -41,7 +41,7 @@ export const PersonasContextProvider = ({children})=>{
         try {
             const response = await deletePersonasRequest(id,rev);
             console.log(persona);
-            setPersona()
+            setPersona(persona.filter(persona => persona.id != id))
             return response;
         } catch (error) {
             console.error(error);
