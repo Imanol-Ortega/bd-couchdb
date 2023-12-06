@@ -8,6 +8,6 @@ router.get('/personas',listarvarios);
 router.get('/personas/:key',listar);
 router.post('/personas',insertar);
 router.post('/personas/:id',actualizar);
-router.delete('/personas/:id',borrar);
+router.delete('/personas/:id/:rev',borrar);
 
-export default router;
+export default router; 

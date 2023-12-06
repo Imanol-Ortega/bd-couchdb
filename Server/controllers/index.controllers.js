@@ -36,13 +36,14 @@ export const listarvarios = async(req,res)=>{
 
 export const insertar = async(req,res)=>{
     try {
+     
         const resp = req.body
+
         couch.insert(dbName,{
             nombre: resp.nombre,
             Apellido:resp.apellido,
             NroDocumento:resp.nrodocumento,
             Email:resp.email,
-            Telefonos: resp.telefonos
         }).then(({data,headers,status})=>{
             res.json(data)
         },err =>{
@@ -76,7 +77,8 @@ export const actualizar = async(req,res)=>{
 
 export const borrar = async(req,res)=>{
    try {
-    couch.del(dbName,req.body.id,req.body.rev).then(({data,headers,status})=>{
+    console.log(req.body)
+    couch.del(dbName,req.params.id,req.params.rev).then(({data,headers,status})=>{
         res.json(data);
     },err=>{
 
