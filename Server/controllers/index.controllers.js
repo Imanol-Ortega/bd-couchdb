@@ -77,7 +77,6 @@ export const actualizar = async(req,res)=>{
 
 export const borrar = async(req,res)=>{
    try {
-    console.log(req.body)
     couch.del(dbName,req.params.id,req.params.rev).then(({data,headers,status})=>{
         res.json(data);
     },err=>{
